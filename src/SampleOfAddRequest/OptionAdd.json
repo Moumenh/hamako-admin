@@ -1,0 +1,11 @@
+{
+  "name": "Material",
+  "values": [ // optional
+      {
+          "value": "Iron"
+      },
+      {
+          "value": "Wood"
+      }
+  ]
+}

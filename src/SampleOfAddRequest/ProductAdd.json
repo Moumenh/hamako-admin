@@ -1,0 +1,240 @@
+{
+  "name": "Trial",
+  "slug": "Trial",
+  "description": "Trial desc",
+  "categoryIds": [
+      9
+  ],
+  "isActive": true,
+  "isVariant": true,
+  "options": [
+      {
+          "name": "Size",
+          "values" : [
+              { "value": "Large" },
+              { "value": "X-Large" }
+          ]
+      },
+      {
+          "name": "Color",
+          "values" : [
+              { "value": "Red" }
+          ]
+      }
+  ],
+  "variants": [
+      {
+          "sku": "1232213123",
+          "upc": "12323213212322",
+          "is_active": true,
+          "retailPrice": 23,
+          "salePrice": 25,
+          "storePrice": 27,
+          "optionValues": [
+              {
+                  "value": "Large"
+              },
+              {
+                  "value": "Red"
+              }
+          ],
+          "media": [
+              {
+                  "imgUrl": "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000"
+              },
+              {
+                  "imgUrl": "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000"
+              }
+          ]
+      },
+      {
+          "sku": "1232w23",
+          "upc": "123222",
+          "is_active": true,
+          "retailPrice": 21,
+          "salePrice": 23,
+          "storePrice": 25,
+          "optionValues": [
+              {
+                  "value": "X-Large"
+              },
+              {
+                  "value": "Red"
+              }
+          ],
+          "media": [
+              {
+                  "imgUrl": "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000"
+              }
+          ],
+          "inventory": {
+              "units": 60
+          }
+      }
+  ]
+}
+
+"response": {
+  "status": true,
+  "body": {
+      "id": 9,
+      "name": "Trial",
+      "description": "Trial desc",
+      "isVariant": true,
+      "isActive": true,
+      "createdAt": "2022-12-23T16:43:38.153Z",
+      "updatedAt": "2022-12-23T16:43:38.153Z",
+      "variants": [
+          {
+              "id": 10,
+              "upc": "12323213212322",
+              "sku": "1232213123",
+              "retailPrice": 23,
+              "salePrice": 25,
+              "storePrice": 27,
+              "isActive": true,
+              "isInSale": false,
+              "productId": 9,
+              "createdAt": "2022-12-23T16:43:38.172Z",
+              "updatedAt": "2022-12-23T16:43:38.172Z",
+              "optionValues": [
+                  {
+                      "id": 21,
+                      "value": "Large",
+                      "optionId": 14,
+                      "createdAt": "2022-12-23T16:43:38.162Z",
+                      "updatedAt": "2022-12-23T16:43:38.162Z"
+                  },
+                  {
+                      "id": 23,
+                      "value": "Red",
+                      "optionId": 15,
+                      "createdAt": "2022-12-23T16:43:38.168Z",
+                      "updatedAt": "2022-12-23T16:43:38.168Z"
+                  }
+              ],
+              "inventory": null,
+              "media": [
+                  {
+                      "id": 4,
+                      "imgUrl": "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000",
+                      "altText": null,
+                      "isDefault": false,
+                      "variantId": 10,
+                      "createdAt": "2022-12-23T16:43:38.172Z",
+                      "updatedAt": "2022-12-23T16:43:38.172Z"
+                  },
+                  {
+                      "id": 5,
+                      "imgUrl": "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000",
+                      "altText": null,
+                      "isDefault": false,
+                      "variantId": 10,
+                      "createdAt": "2022-12-23T16:43:38.172Z",
+                      "updatedAt": "2022-12-23T16:43:38.172Z"
+                  }
+              ]
+          },
+          {
+              "id": 11,
+              "upc": "123222",
+              "sku": "1232w23",
+              "retailPrice": 21,
+              "salePrice": 23,
+              "storePrice": 25,
+              "isActive": true,
+              "isInSale": false,
+              "productId": 9,
+              "createdAt": "2022-12-23T16:43:38.179Z",
+              "updatedAt": "2022-12-23T16:43:38.179Z",
+              "optionValues": [
+                  {
+                      "id": 22,
+                      "value": "X-Large",
+                      "optionId": 14,
+                      "createdAt": "2022-12-23T16:43:38.162Z",
+                      "updatedAt": "2022-12-23T16:43:38.162Z"
+                  },
+                  {
+                      "id": 23,
+                      "value": "Red",
+                      "optionId": 15,
+                      "createdAt": "2022-12-23T16:43:38.168Z",
+                      "updatedAt": "2022-12-23T16:43:38.168Z"
+                  }
+              ],
+              "inventory": {
+                  "id": 3,
+                  "units": 60,
+                  "unitsSold": null,
+                  "variantId": 11,
+                  "createdAt": "2022-12-23T16:43:38.179Z",
+                  "updatedAt": "2022-12-23T16:43:38.179Z"
+              },
+              "media": [
+                  {
+                      "id": 6,
+                      "imgUrl": "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000",
+                      "altText": null,
+                      "isDefault": false,
+                      "variantId": 11,
+                      "createdAt": "2022-12-23T16:43:38.179Z",
+                      "updatedAt": "2022-12-23T16:43:38.179Z"
+                  }
+              ]
+          }
+      ],
+      "options": [
+          {
+              "id": 14,
+              "name": "Size",
+              "productId": 9,
+              "createdAt": "2022-12-23T16:43:38.162Z",
+              "updatedAt": "2022-12-23T16:43:38.162Z",
+              "values": [
+                  {
+                      "id": 21,
+                      "value": "Large",
+                      "optionId": 14,
+                      "createdAt": "2022-12-23T16:43:38.162Z",
+                      "updatedAt": "2022-12-23T16:43:38.162Z"
+                  },
+                  {
+                      "id": 22,
+                      "value": "X-Large",
+                      "optionId": 14,
+                      "createdAt": "2022-12-23T16:43:38.162Z",
+                      "updatedAt": "2022-12-23T16:43:38.162Z"
+                  }
+              ]
+          },
+          {
+              "id": 15,
+              "name": "Color",
+              "productId": 9,
+              "createdAt": "2022-12-23T16:43:38.168Z",
+              "updatedAt": "2022-12-23T16:43:38.168Z",
+              "values": [
+                  {
+                      "id": 23,
+                      "value": "Red",
+                      "optionId": 15,
+                      "createdAt": "2022-12-23T16:43:38.168Z",
+                      "updatedAt": "2022-12-23T16:43:38.168Z"
+                  }
+              ]
+          }
+      ],
+      "category": [
+          {
+              "id": 9,
+              "name": "Second",
+              "slug": "second-category",
+              "imageUrl": "First Image",
+              "createdAt": "2022-12-21T13:03:25.453Z",
+              "updatedAt": "2022-12-21T13:03:25.437Z",
+              "isActive": true
+          }
+      ]
+  }
+}

@@ -1,0 +1,43 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.layout .header {
+  display: flex;
+  height: 60px;
+  padding: 0 20px;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.layout .main {
+  display: flex;
+  flex: 1;
+  height: 100%;
+}
+
+.layout .side-bar {
+  flex: 0 0 250px;
+  min-height: 100%;
+  padding: 12px;
+  border-right: 1px solid #E5E7EB;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout .content {
+  width: 100%;
+  padding: 16px;
+  background-color: #F9FAFB;
+}
+
+.side-bar h1 {
+  font-weight: 500;
+  color: #111827;
+}
+
+.side-bar > span {
+  margin: 11px 0;
+  cursor: pointer;
+}
