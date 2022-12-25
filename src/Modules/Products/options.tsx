@@ -1,55 +1,18 @@
-import { useState, useEffect } from "react";
-import Select, { SingleValue } from "react-select";
+import { useState, useMemo } from "react";
+import Select  from "react-select";
 import {  Box, Button, Heading, Flex } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import { v4 as uuidv4 } from "uuid";
+import { useQuery } from 'react-query'
+
 import VariantForm from "./variant-form";
-import { useProductForm, Combination, Option, OptionValue } from "./context/product.context";
+import { useProductForm, OptionSelection } from "./context/product.context";
 
-interface OptionSelection {
-  label: string;
-  option: Option;
-  selectedValues: OptionValue[];
-  value: string;
-}
+import { getOptions } from "../../Services";
 
-interface SelectedOption {
-  [key: string]: OptionSelection;
-}
+import { getCombinations } from "./helpers";
 
-export const getCombinations = (options: Option[]): Combination[] => {
-  if (options.length === 0) {
-    return [];
-  }
 
-  if (options.length === 1) {
-    // @ts-ignore
-    const values = options.shift().values;
-    console.log({ values });
-    if (values.length > 0) {
-      // return values.map((v) => [v])
-      return values.map((v) => ({
-        id: uuidv4(),
-        options: [v],
-      }));
-    }
-
-    return [];
-  }
-
-  const combinations = [];
-  // @ts-ignore
-  const theseValues = options.shift().values;
-
-  const lowerCombinations = getCombinations(options);
-  for (const v of theseValues) {
-    for (const second of lowerCombinations) {
-      const clonedSecond = { id: uuidv4(), options: [...second.options, v] };
-      combinations.push(clonedSecond);
-    }
-  }
-  return combinations;
-};
 
 const optionsData = [
   {
@@ -124,25 +87,29 @@ const optionsData = [
 ];
 
 const Options = () => {
-  const {variants, setVariants} = useProductForm()
+  const { variants, setVariants, selectedOptions, setSelectedOptions } = useProductForm();
   const [options, setOptions] = useState([{ id: uuidv4() }]);
-  const [selectedOptions, setSelectedOptions] = useState<SelectedOption>({})
 
-  const formatedOptions = optionsData
-    .map((option) => ({
-      label: option.name,
-      value: option.name,
-      option,
-      selectedValues: [],
-    }))
-    .filter((option) => {
-      const formatedSelectedOptions = Object.values(selectedOptions);
-      if (formatedSelectedOptions.find((o) => o.value === option.value)) {
-        // TODO: make value to be the id
-        return false;
-      }
-      return true;
-    });
+  const { data: optionsApi } = useQuery("options", getOptions)
+
+  const formattedOptions = useMemo(() => {
+    if (optionsApi?.status) {
+      return optionsApi.body.map((option) => ({
+        label: option.name,
+        value: option.name,
+        option,
+        selectedValues: [],
+      }))
+      .filter((option) => {
+        const formatedSelectedOptions = Object.values(selectedOptions);
+        if (formatedSelectedOptions.find((o) => o.value === option.value)) {
+          // TODO: make value to be the id
+          return false;
+        }
+        return true;
+      });
+    }
+  }, [optionsApi, selectedOptions])
 
   const addOption = () => {
     setOptions((prev) => [...prev, { id: uuidv4() }]);
@@ -208,7 +175,7 @@ const Options = () => {
           <Box key={option.id}>
             <Select
               name="Option Name"
-              options={formatedOptions as any}
+              options={formattedOptions as any}
               onChange={(value) => handleOptionSelection(option.id, value as OptionSelection)}
               value={selectedOptions[option.id]}
               isClearable={true}

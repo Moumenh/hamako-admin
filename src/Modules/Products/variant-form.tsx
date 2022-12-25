@@ -15,9 +15,15 @@ const VariantForm = ({ variant, index }: any) => {
       </Flex>
       <Input type="text" w="120px" mr="4" placeholder="Sku" {...register(`variants.${index}.sku`)} />
       <Input type="text" w="120px" mr="4" placeholder="Upc" {...register(`variants.${index}.upc`)} />
-      <Input type="text" w="120px" mr="4" placeholder="Retail price" {...register(`variants.${index}.retailPrice`)} />
-      <Input type="text" w="120px" mr="4" placeholder="Sale price" {...register(`variants.${index}.salePrice`)} />
-      <Input type="text" w="120px" mr="4" placeholder="Store price" {...register(`variants.${index}.storePrice`, { required: true })} />
+      <Input type="text" w="120px" mr="4" placeholder="Retail price" {...register(`variants.${index}.retailPrice`, { valueAsNumber: true })} />
+      <Input type="text" w="120px" mr="4" placeholder="Sale price" {...register(`variants.${index}.salePrice`, { valueAsNumber: true })} />
+      <Input
+        type="text"
+        w="120px"
+        mr="4"
+        placeholder="Store price"
+        {...register(`variants.${index}.storePrice`, { required: true, valueAsNumber: true })}
+      />
     </Flex>
   ) : null;
 };

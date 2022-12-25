@@ -1,4 +1,4 @@
-import { createContext, useContext, ReactNode, FormEvent } from "react";
+import { createContext, useContext, ReactNode, FormEvent, useState } from "react";
 import { useForm, useFieldArray, UseFormRegister, UseFormTrigger, FormProvider } from "react-hook-form";
 
 export type Variants = {
@@ -37,6 +37,17 @@ export interface Combination {
   options: OptionValue[];
 }
 
+export interface OptionSelection {
+  label: string;
+  option: Option;
+  selectedValues: OptionValue[];
+  value: string;
+}
+
+interface SelectedOption {
+  [key: string]: OptionSelection;
+}
+
 type ProductContextDefaultValues = {
   isVariant?: boolean;
   variants?: Variants[];
@@ -44,11 +55,18 @@ type ProductContextDefaultValues = {
   handleAddingProduct?: (e: FormEvent<HTMLFormElement>) => void;
   register?: UseFormRegister<FormData>;
   trigger?: UseFormTrigger<FormData>;
+  selectedOptions: SelectedOption;
+  setSelectedOptions: React.Dispatch<React.SetStateAction<SelectedOption>>
 }
 
-const ProductContext = createContext<ProductContextDefaultValues>({});
+const ProductContext = createContext<ProductContextDefaultValues>({
+  selectedOptions: {},
+  setSelectedOptions: () => {}
+});
 
 export const ProductContextProvider = ({ onSubmit, children }: { onSubmit: any; children: ReactNode }) => {
+  const [selectedOptions, setSelectedOptions] = useState<SelectedOption>({})
+
   const {
     register,
     handleSubmit,
@@ -84,12 +102,14 @@ export const ProductContextProvider = ({ onSubmit, children }: { onSubmit: any; 
 
   const handleAddingProduct = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    handleSubmit(onSubmit)(e)
+    const options = Object.entries(selectedOptions)
+      .map(([_, { option }]) => ({ id: option.id }))
+    handleSubmit((data) => onSubmit({ ...data, options }))(e);
   }
 
   return (
     <ProductContext.Provider
-      value={{ isVariant, variants, setVariants, handleAddingProduct, register, trigger }}
+      value={{ isVariant, variants, setVariants, handleAddingProduct, register, trigger, selectedOptions, setSelectedOptions }}
     >
       {children}
     </ProductContext.Provider>
