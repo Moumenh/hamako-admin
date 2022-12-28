@@ -37,4 +37,12 @@ const createProduct = async (payload) => {
   return data
 }
 
-export { getOptions, createProduct };
+const getProductListing = async (payload) => {
+  const { data } = await axiosInstance.get("product", {
+    params: payload
+  })
+  console.log({ data });
+  return data
+}
+
+export { getOptions, createProduct, getProductListing };

@@ -22,7 +22,7 @@ const VariantForm = ({ variant, index }: any) => {
         w="120px"
         mr="4"
         placeholder="Store price"
-        {...register(`variants.${index}.storePrice`, { required: true, valueAsNumber: true })}
+        {...register(`variants.${index}.storePrice`, { required: true, valueAsNumber: true, })}
       />
     </Flex>
   ) : null;
