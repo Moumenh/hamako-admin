@@ -1,4 +1,4 @@
-import { Button, Table, Thead, Tbody, Tr, Th, Td,   TableContainer, Box } from "@chakra-ui/react";
+import { Button, Table, Thead, Tbody, Tr, Th, Td, TableContainer, Box } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 import { useQuery } from "react-query";
@@ -9,15 +9,15 @@ import { ActionMenu, ActionType } from "../../ui";
 import { getOptions } from "../../Services";
 
 const StyledTR = styled(Tr)`
-  &:hover{
+  &:hover {
     cursor: pointer;
     background-color: rgb(249 250 251);
   }
-`
+`;
 
 const OptionsListing = () => {
   const { data, isLoading } = useQuery("options-listing", getOptions);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const actions = (optionId: number): ActionType[] => [
     {
@@ -37,10 +37,15 @@ const OptionsListing = () => {
 
   return (
     <Box px="200px">
-      <Button mb="8" onClick={() => {
-        navigate("new")
-      }}>Add Option</Button>
-      <TableContainer >
+      <Button
+        mb="8"
+        onClick={() => {
+          navigate("new");
+        }}
+      >
+        Add Option
+      </Button>
+      <TableContainer>
         <Table variant="simple">
           <Thead>
             <Tr>
@@ -54,7 +59,9 @@ const OptionsListing = () => {
             {data?.body.map((option) => (
               <StyledTR key={option.id} onClick={() => navigate(`/options/${option.id}`)}>
                 <Td w="100%">{option.name}</Td>
-                <Td ><ActionMenu actions={actions(option.id)} /></Td>
+                <Td>
+                  <ActionMenu actions={actions(option.id)} />
+                </Td>
               </StyledTR>
             ))}
           </Tbody>

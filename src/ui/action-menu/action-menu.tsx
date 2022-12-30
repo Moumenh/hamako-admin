@@ -2,13 +2,6 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
-  PopoverCloseButton,
-  PopoverAnchor,
-  IconButton,
   Button,
 } from "@chakra-ui/react";
 import styled from "@emotion/styled";
