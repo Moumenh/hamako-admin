@@ -52,7 +52,7 @@ const OptionsListing = () => {
           </Thead>
           <Tbody>
             {data?.body.map((option) => (
-              <StyledTR key={option.id}>
+              <StyledTR key={option.id} onClick={() => navigate(`/options/${option.id}`)}>
                 <Td w="100%">{option.name}</Td>
                 <Td ><ActionMenu actions={actions(option.id)} /></Td>
               </StyledTR>
