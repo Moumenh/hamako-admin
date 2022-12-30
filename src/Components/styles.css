@@ -29,12 +29,10 @@
 .layout .content {
   width: 100%;
   padding: 16px;
-  background-color: #F9FAFB;
 }
 
 .side-bar h1 {
   font-weight: 500;
-  color: #111827;
 }
 
 .side-bar > span {

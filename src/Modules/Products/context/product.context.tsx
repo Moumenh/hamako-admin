@@ -1,5 +1,5 @@
 import { createContext, useContext, ReactNode, FormEvent, useState } from "react";
-import { useForm, useFieldArray, UseFormRegister, UseFormTrigger, FormProvider } from "react-hook-form";
+import { useForm, useFieldArray, UseFormRegister, UseFormTrigger, FormProvider, Control } from "react-hook-form";
 
 export type Variants = {
   sku?: string;
@@ -18,6 +18,7 @@ type FormData = {
   isActive: string;
   isVariant: boolean;
   variants: Variants[];
+  categoryIds: number[];
 };
 
 export interface OptionValue {
@@ -57,6 +58,7 @@ type ProductContextDefaultValues = {
   trigger?: UseFormTrigger<FormData>;
   selectedOptions: SelectedOption;
   setSelectedOptions: React.Dispatch<React.SetStateAction<SelectedOption>>
+  control?: Control<FormData>;
 }
 
 const ProductContext = createContext<ProductContextDefaultValues>({
@@ -109,7 +111,7 @@ export const ProductContextProvider = ({ onSubmit, children }: { onSubmit: any; 
 
   return (
     <ProductContext.Provider
-      value={{ isVariant, variants, setVariants, handleAddingProduct, register, trigger, selectedOptions, setSelectedOptions }}
+      value={{ isVariant, variants, setVariants, handleAddingProduct, register, trigger, selectedOptions, setSelectedOptions, control }}
     >
       {children}
     </ProductContext.Provider>
