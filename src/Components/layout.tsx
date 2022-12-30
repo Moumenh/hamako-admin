@@ -25,6 +25,9 @@ const Layout: React.FC<Props> = ({ children }) => {
             <h1 onClick={() => navigate("/")}>Statistics</h1>
           </span>
           <span>
+            <h1 onClick={() => navigate("options")}>Options</h1>
+          </span>
+          <span>
             <h1 onClick={() => navigate("products")}>Products</h1>
           </span>
           <span>

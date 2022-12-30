@@ -18,4 +18,21 @@ axiosInstance.interceptors.request.use(
   }
 );
 
+interface PaginationModel {
+  count: number;
+  pageSize: number;
+  pageCount: number;
+  pageNumber: number;
+}
+
+interface BaseResponse<T> {
+  status: boolean;
+  body: T;
+}
+
+interface PagingResponse<T> extends BaseResponse<T> {
+  pagination: PaginationModel;
+}
+
 export { axiosInstance };
+export type { BaseResponse, PagingResponse };

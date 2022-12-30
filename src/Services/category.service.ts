@@ -1,15 +1,4 @@
-import { axiosInstance } from "./axiosInstance";
-
-type request<T> = {
-  status: boolean;
-  body: T;
-  pagination: {
-    count: number;
-    pageSize: number;
-    pageCount: number;
-    pageNumber: number;
-  };
-};
+import { axiosInstance, PagingResponse } from "./axiosInstance";
 
 export type Category = {
   id: number;
@@ -22,7 +11,7 @@ export type Category = {
 };
 
 const getCategories = async () => {
-  const { data } = await axiosInstance.get<request<Category[]>>("category");
+  const { data } = await axiosInstance.get<PagingResponse<Category[]>>("category");
   return data;
 };
 

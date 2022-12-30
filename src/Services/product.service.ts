@@ -33,7 +33,6 @@ const getOptions = async () => {
 
 const createProduct = async (payload) => {
   const { data } = await axiosInstance.post("product", payload)
-  console.log({ data });
   return data
 }
 
@@ -41,7 +40,6 @@ const getProductListing = async (payload) => {
   const { data } = await axiosInstance.get("product", {
     params: payload
   })
-  console.log({ data });
   return data
 }
 

@@ -3,8 +3,9 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import Layout from "./Components/layout";
 
 import Home from "./Modules/Home";
-import OrdersPage from "./Pages/orders-page";
 import Products from "./Modules/Products";
+import Orders from "./Modules/Orders";
+import Options from "./Modules/Options";
 
 import "./App.css";
 
@@ -17,7 +18,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="products/*" element={<Products />} />
-          <Route path="orders/*" element={<OrdersPage />} />
+          <Route path="orders/*" element={<Orders />} />
+          <Route path="options/*" element={<Options />} />
         </Routes>
       </Layout>
     </QueryClientProvider>
