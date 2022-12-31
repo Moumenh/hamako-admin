@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import OptionsListing from "./options-listing";
 import NewOption from "./new-option";
-import EditOption from "./edit-option";
+import EditOption from "./edit-option-modal";
 
 const Options = () => {
   return (

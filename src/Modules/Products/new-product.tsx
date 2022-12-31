@@ -11,7 +11,6 @@ const NewProduct = () => {
   const {mutate, data} = useMutation(createProduct)
   console.log({ dataTrial: data });
   const onSubmit = (data: any) => { // TODO: define form data type
-    console.log("hereeee nowww")
     console.log({ data })
     mutate(data)
   }

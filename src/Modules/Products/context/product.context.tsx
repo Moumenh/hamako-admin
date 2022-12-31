@@ -105,7 +105,7 @@ export const ProductContextProvider = ({ onSubmit, children }: { onSubmit: any; 
   const handleAddingProduct = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const options = Object.entries(selectedOptions)
-      .map(([_, { option }]) => ({ id: option.id }))
+      .map(([_, { option, selectedValues }]) => ({ id: option.id, selections: selectedValues  }))
     handleSubmit((data) => onSubmit({ ...data, options }))(e);
   }
 

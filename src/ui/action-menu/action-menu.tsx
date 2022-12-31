@@ -1,8 +1,10 @@
+import {FC} from 'react'
 import {
   Popover,
   PopoverTrigger,
   PopoverContent,
   Button,
+  PlacementWithLogical,
 } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 
@@ -22,9 +24,14 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const ActionMenu = ({ actions = [] }: { actions: ActionType[] }) => {
+type Props = {
+  actions: ActionType[];
+  placement?: PlacementWithLogical | undefined
+}
+
+const ActionMenu:FC<Props> = ({ actions = [], placement="bottom" }) => {
   return (
-    <Popover placement="bottom">
+    <Popover placement={placement}>
       <PopoverTrigger>
         <div onClick={(e) => e.stopPropagation()}>
           <MoreHorizontalIcon />
