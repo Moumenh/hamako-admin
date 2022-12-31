@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Tr, Td } from "@chakra-ui/react";
+import { Tr, Td, useColorModeValue } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router";
 
@@ -12,15 +12,13 @@ import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 const StyledTR = styled(Tr)`
   &:hover {
     cursor: pointer;
-    background-color: rgb(249 250 251);
   }
 `;
 
 const OptionRow = ({ option }) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
-  
   const actions = (optionId: number): ActionType[] => [
     {
       icon: <EditIcon color="gray.500" />,
@@ -36,16 +34,27 @@ const OptionRow = ({ option }) => {
       onClick: () => {},
     },
   ];
-  
+  const hoverColor = useColorModeValue("#f9fafb", "#151a24");
+
   return (
     <>
-      <StyledTR key={option.id} onClick={() => setIsOpen(true)}>
+      <StyledTR
+        key={option.id}
+        onClick={() => setIsOpen(true)}
+        _hover={{ bg: hoverColor }}
+      >
         <Td w="100%">{option.name}</Td>
         <Td>
           <ActionMenu actions={actions(option.id)} />
         </Td>
       </StyledTR>
-      {isOpen && <EditOptionModal isOpen={isOpen} onClose={() => setIsOpen(false)} option={option} />}
+      {isOpen && (
+        <EditOptionModal
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          option={option}
+        />
+      )}
     </>
   );
 };
