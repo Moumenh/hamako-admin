@@ -1,21 +1,13 @@
 import {useState} from 'react'
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { Button, Table, Thead, Tbody, Tr, Th, TableContainer, Td, Box, Flex } from '@chakra-ui/react';
-import styled from '@emotion/styled';
+import { Button, Table, Thead, Tbody, Tr, Th, TableContainer, Td, Box, Flex, useColorModeValue } from '@chakra-ui/react';
 
 import { ActionMenu, ActionType } from "../../ui";
 
 import { getProductListing } from "../../Services";
 
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
-
-const StyledTR = styled(Tr)`
-  &:hover {
-    cursor: pointer;
-    background-color: rgb(249 250 251);
-  }
-`;
 
 const ProdcutListing = () => {
   const [page, setPage] = useState(1)
@@ -45,6 +37,9 @@ const ProdcutListing = () => {
     },
   ];
 
+  const hoverColor = useColorModeValue("#f9fafb", "#151a24");
+
+
   return (
     <Box p={8}>
       <Flex justifyContent='space-between' alignItems="center" mb="4">
@@ -69,13 +64,13 @@ const ProdcutListing = () => {
           </Thead>
           <Tbody>
             {data?.body.map((product) => (
-              <StyledTR key={product.id} >
+              <Tr key={product.id} _hover={{ bg: hoverColor }} cursor="pointer">
                 <Td>{product.name}</Td>
                 <Td>{product.name}</Td>
                 <Td>{product.name}</Td>
                 <Td>{product.name}</Td>
                 <Td><ActionMenu actions={actions(product.id)} /></Td>
-              </StyledTR>
+              </Tr>
             ))}
           </Tbody>
         </Table>
