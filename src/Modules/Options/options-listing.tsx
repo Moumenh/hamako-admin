@@ -1,4 +1,4 @@
-import { Button, Table, Thead, Tbody, Tr, Th, TableContainer, Box, Modal } from "@chakra-ui/react";
+import { Button, Table, Thead, Tbody, Tr, Th, TableContainer, Box, Flex } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router";
@@ -14,20 +14,22 @@ const OptionsListing = () => {
 
 
   return (
-    <Box px="200px">
-      <Button
-        mb="8"
-        onClick={() => {
-          navigate("new");
-        }}
-      >
-        Add Option
-      </Button>
+    <Box p={8}>
+      <Flex justifyContent="space-between" alignItems="center" mb="4">
+        <span>Options #{data?.body?.length}</span>
+        <Button
+          onClick={() => {
+            navigate("new");
+          }}
+        >
+          Add Option
+        </Button>
+      </Flex>
       <TableContainer>
         <Table variant="simple">
           <Thead>
             <Tr>
-              <Th w="100%">Option</Th>
+              <Th>Option</Th>
               <Th>
                 <EditIcon color="gray.500" />
               </Th>

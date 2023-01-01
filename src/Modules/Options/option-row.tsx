@@ -40,7 +40,7 @@ const OptionRow = ({ option }) => {
   return (
     <>
       <StyledTR key={option.id} onClick={() => setIsOpen(true)}>
-        <Td w="100%">{option.name}</Td>
+        <Td w="90%">{option.name}</Td>
         <Td>
           <ActionMenu actions={actions(option.id)} />
         </Td>

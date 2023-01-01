@@ -1,8 +1,21 @@
 import {useState} from 'react'
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { Button } from '@chakra-ui/react';
+import { Button, Table, Thead, Tbody, Tr, Th, TableContainer, Td, Box, Flex } from '@chakra-ui/react';
+import styled from '@emotion/styled';
+
+import { ActionMenu, ActionType } from "../../ui";
+
 import { getProductListing } from "../../Services";
+
+import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
+
+const StyledTR = styled(Tr)`
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(249 250 251);
+  }
+`;
 
 const ProdcutListing = () => {
   const [page, setPage] = useState(1)
@@ -13,49 +26,76 @@ const ProdcutListing = () => {
   });
   
   const navigate = useNavigate();
-  console.log({page, isPreviousData})
+  console.log({ page, isPreviousData })
+  
+  const tableHeader = ["", "Name", "Price", "Inventory", <EditIcon color="gray.500" />]
+
+  const actions = (productId: number): ActionType[] => [
+    {
+      icon: <EditIcon color="gray.500" />,
+      label: "edit",
+      onClick: () => {
+        console.log("here", { productId });
+      },
+    },
+    {
+      icon: <DeleteIcon color="red.500" />,
+      label: "Delete",
+      onClick: () => {},
+    },
+  ];
 
   return (
-    <div>
-      <h1
-        style={{
-          cursor: "pointer",
-          fontWeight: "bold",
-        }}
+    <Box p={8}>
+      <Flex justifyContent='space-between' alignItems="center" mb="4">
+        <span>
+          Products #{data?.pagination?.count}
+        </span>
+      <Button
         onClick={() => navigate("new")}
       >
         Add A product
-      </h1>
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : isError ? (
-        <div>Error: {error.message}</div>
-      ) : (
-        <div>
-          {data.body.map(product => (
-            <p key={product.id}>{product.name}</p>
-          ))}
-        </div>
-      )}
-      <Button
-        onClick={() => setPage(old => Math.max(old - 1, 1))}
-        disabled={page === 1}
-      >
+      </Button>
+      </Flex>
+      
+      <TableContainer mb={4}>
+        <Table variant="simple">
+          <Thead>
+            <Tr>
+              {tableHeader.map((header, i) => (
+                <Th key={i}>{header}</Th>
+              ))}
+            </Tr>
+          </Thead>
+          <Tbody>
+            {data?.body.map((product) => (
+              <StyledTR key={product.id} >
+                <Td>{product.name}</Td>
+                <Td>{product.name}</Td>
+                <Td>{product.name}</Td>
+                <Td>{product.name}</Td>
+                <Td><ActionMenu actions={actions(product.id)} /></Td>
+              </StyledTR>
+            ))}
+          </Tbody>
+        </Table>
+      </TableContainer>
+      <Button onClick={() => setPage((old) => Math.max(old - 1, 1))} disabled={page === 1}>
         Previous Page
-      </Button>{' '}
+      </Button>{" "}
       <Button
         onClick={() => {
           if (!isPreviousData && !(data?.pagination?.pageCount === data?.pagination?.pageNumber)) {
-            setPage(old => old + 1)
+            setPage((old) => old + 1);
           }
         }}
         // Disable the Next Page Button until we know a next page is available
-        disabled={isPreviousData || (data?.pagination?.pageCount === data?.pagination?.pageNumber)}
+        disabled={isPreviousData || data?.pagination?.pageCount === data?.pagination?.pageNumber}
       >
         Next Page
       </Button>
-      {isFetching ? <span> Loading...</span> : null}{' '}
-    </div>
+      {isFetching ? <span> Loading...</span> : null}{" "}
+    </Box>
   );
 };
 
